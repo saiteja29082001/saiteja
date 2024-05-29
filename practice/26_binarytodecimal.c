@@ -1,25 +1,43 @@
-#include<stdio.h>
-int powr(int a,int n)
-{
-	int k=1;
-	for(int i=0;i<n;i++)
-	{
-		k=k*a;
-	}
-	return k;
+// convert binary to decimal
+
+#include <stdio.h>
+#include <math.h>
+
+// function prototype
+int convert(long long);
+
+int main() {
+
+  long long n;
+
+  printf("Enter a binary number: ");
+  scanf("%lld", &n);
+
+  printf("%lld in binary = %d in decimal", n, convert(n));
+
+  return 0;
 }
 
-int main()
-{
-	int a,k=0;
-	scanf("%d",&a);
-	for(int i=0;i<31;i++)
-	{
-		if(a%10)
-		{
-			k=k+powr(2,i);
-		}	
-		a=a/10;
-	}
-	printf("%d",k);
+// function definition
+int convert(long long n) {
+
+  int dec = 0, i = 0, rem;
+
+  while (n != 0) {
+
+    // get remainder of n divided by 10
+    rem = n % 10;
+
+    // divide n by 10
+    n /= 10;
+
+    // multiply rem by (2 ^ i)
+    // add the product to dec
+    dec += rem * pow(2, i);
+
+    // increment i
+    ++i;
+  }
+
+  return dec;
 }
